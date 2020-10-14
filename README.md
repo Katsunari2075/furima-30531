@@ -61,7 +61,7 @@
 | city      | string     | null:false                    |
 | address   | string     | null:false                    |
 | building  | string     |                               |
-| tel       | integer    | null:false                    |
+| tel       | string     | null:false                    |
 | purchase  | references | null:false, foreign_key: true |
 
 ### Association
