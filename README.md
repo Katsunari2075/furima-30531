@@ -17,32 +17,34 @@
 
  - has_many :items
  - has_many :comments
+ - has_many :purchases
 
 ## items テーブル
 
-| Colum          | Type       | Options    |
-| -------------- | ---------- | ---------- |
-| name           | string     | null:false |
-| description    | string     | null:false |
-| category_id    | integer    | null:false |
-| status_id      | integer    | null:false |
-| burden_id      | integer    | null:false |
-| area_id        | integer    | null:false |
-| day_to_ship_id | integer    | null:false |
-| user           | references |            |
+| Colum          | Type       | Options                       |
+| -------------- | ---------- | ----------------------------- |
+| name           | string     | null:false                    |
+| description    | string     | null:false                    |
+| category_id    | integer    | null:false                    |
+| status_id      | integer    | null:false                    |
+| burden_id      | integer    | null:false                    |
+| area_id        | integer    | null:false                    |
+| day_to_ship_id | integer    | null:false                    |
+| price          | integer    | null:false                    |
+| user           | references | null:false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :purchase
+- has_one :purchase
 - has_many :comments
 
 ## purchases テーブル
 
-| Colum | Type       | Options |
-| ----- | ---------- | ------- |
-| user  | references |         |
-| item  | references |         |
+| Colum | Type       | Options                       |
+| ----- | ---------- | ----------------------------- |
+| user  | references | null:false, foreign_key: true |
+| item  | references | null:false, foreign_key: true |
 
 ### Association
 
@@ -52,15 +54,15 @@
 
 ## recipient テーブル
 
-| Colum     | Type       | Options    |
-| --------- | ---------- | ---------- |
-| post_code | integer    | null:false |
-| area_id   | integer    | null:false |
-| city      | string     | null:false |
-| address   | string     | null:false |
-| building  | string     |            |
-| tel       | integer    | null:false |
-| purchase  | references |            |
+| Colum     | Type       | Options                       |
+| --------- | ---------- | ----------------------------- |
+| post_code | string     | null:false                    |
+| area_id   | integer    | null:false                    |
+| city      | string     | null:false                    |
+| address   | string     | null:false                    |
+| building  | string     |                               |
+| tel       | integer    | null:false                    |
+| purchase  | references | null:false, foreign_key: true |
 
 ### Association
 
