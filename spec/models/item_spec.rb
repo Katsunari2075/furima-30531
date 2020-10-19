@@ -6,7 +6,7 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品' do
-    it 'name,description,category_id,status_id,burden_id,area_id,day_to_ship_id,price,imageがあれば保存できること'do
+    it 'name,description,category_id,status_id,burden_id,area_id,day_to_ship_id,price,imageがあれば保存できること' do
       expect(@item).to be_valid
     end
 
@@ -60,19 +60,19 @@ RSpec.describe Item, type: :model do
     it 'priceは半角数字でなければ保存できないこと' do
       @item.price = '７７７７'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is not a number")
+      expect(@item.errors.full_messages).to include('Price is not a number')
     end
 
     it 'priceは300以上でないと保存できない' do
       @item.price = '200'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be greater than 299")
+      expect(@item.errors.full_messages).to include('Price must be greater than 299')
     end
 
     it 'priceは10000000未満出ないと保存できない' do
       @item.price = '10000000'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price must be less than 10000000")
+      expect(@item.errors.full_messages).to include('Price must be less than 10000000')
     end
 
     it 'imageが空では保存できないこと' do
