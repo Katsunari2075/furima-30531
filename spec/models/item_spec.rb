@@ -46,6 +46,36 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Day to ship can't be blank")
     end
 
+    it 'category_idが１の時保存できないこと' do
+      @item.category_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category must be other than 1")
+    end
+
+    it 'status_idが１の時保存できないこと' do
+      @item.status_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Status must be other than 1")
+    end
+
+    it 'burden_idが１の時保存できないこと' do
+      @item.burden_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Burden must be other than 1")
+    end
+
+    it 'area_idが１の時保存できないこと' do
+      @item.area_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Area must be other than 1")
+    end
+
+    it 'day_to_shipが１の時保存できなこと' do
+      @item.day_to_ship_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Day to ship must be other than 1")
+    end
+
     it 'priceが空では保存できないこと' do
       @item.price = nil
       @item.valid?
@@ -53,7 +83,7 @@ RSpec.describe Item, type: :model do
     end
 
     it 'priceは半角数字であれば保存できること' do
-      @item.price = '7777'
+      @item.price = 7777
       expect(@item).to be_valid
     end
 
@@ -64,13 +94,13 @@ RSpec.describe Item, type: :model do
     end
 
     it 'priceは300以上でないと保存できない' do
-      @item.price = '200'
+      @item.price = 200
       @item.valid?
       expect(@item.errors.full_messages).to include('Price must be greater than 299')
     end
 
     it 'priceは10000000未満出ないと保存できない' do
-      @item.price = '10000000'
+      @item.price = 10000000
       @item.valid?
       expect(@item.errors.full_messages).to include('Price must be less than 10000000')
     end
