@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
+  def index
+    @items = Item.all.order(id: 'DESC')
+  end
 
   def new
     @item = Item.new
@@ -11,7 +14,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      render action: :new
+      render :new
     end
   end
 
