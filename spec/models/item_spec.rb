@@ -49,31 +49,31 @@ RSpec.describe Item, type: :model do
     it 'category_idが１の時保存できないこと' do
       @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category must be other than 1")
+      expect(@item.errors.full_messages).to include('Category must be other than 1')
     end
 
     it 'status_idが１の時保存できないこと' do
       @item.status_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Status must be other than 1")
+      expect(@item.errors.full_messages).to include('Status must be other than 1')
     end
 
     it 'burden_idが１の時保存できないこと' do
       @item.burden_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Burden must be other than 1")
+      expect(@item.errors.full_messages).to include('Burden must be other than 1')
     end
 
     it 'area_idが１の時保存できないこと' do
       @item.area_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Area must be other than 1")
+      expect(@item.errors.full_messages).to include('Area must be other than 1')
     end
 
     it 'day_to_shipが１の時保存できなこと' do
       @item.day_to_ship_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Day to ship must be other than 1")
+      expect(@item.errors.full_messages).to include('Day to ship must be other than 1')
     end
 
     it 'priceが空では保存できないこと' do
@@ -100,7 +100,7 @@ RSpec.describe Item, type: :model do
     end
 
     it 'priceは10000000未満出ないと保存できない' do
-      @item.price = 10000000
+      @item.price = 10_000_000
       @item.valid?
       expect(@item.errors.full_messages).to include('Price must be less than 10000000')
     end
