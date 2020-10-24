@@ -10,6 +10,14 @@ RSpec.describe OrderForm, type: :model do
       expect(@order_form).to be_valid
     end
 
+    it 'buildingは空でも保存できるということ' do
+      @order_form.building = nil
+      expect(@order_form).to be_valid
+    end
+
+    
+
+
     it 'tokenが空では保存できないということ' do
       @order_form.token = nil
       @order_form.valid?
@@ -34,6 +42,12 @@ RSpec.describe OrderForm, type: :model do
       expect(@order_form.errors.full_messages).to include("Area can't be blank")
     end
 
+    it 'area_idの値が１では保存できないということ' do
+      @order_form.area_id = 1
+      @order_form.valid?
+      expect(@order_form.errors.full_messages).to include("Area must be other than 1")
+    end
+
     it 'cityが空では保存できないということ' do
       @order_form.city = nil
       @order_form.valid?
@@ -44,11 +58,6 @@ RSpec.describe OrderForm, type: :model do
       @order_form.address = nil
       @order_form.valid?
       expect(@order_form.errors.full_messages).to include("Address can't be blank")
-    end
-
-    it 'buildingは空でも保存できるということ' do
-      @order_form.building = nil
-      expect(@order_form).to be_valid
     end
 
     it 'telが空では保存できないということ' do
